@@ -1,0 +1,66 @@
+body {
+  background: #CCFF66;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+#gamespace {
+  height: 200px;
+  width: 700px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#pick {
+  color: #FF6600;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+#response {
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+#user-input {
+  width: 200px;
+  height: 30px;
+  margin-top: 20px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-box-shadow:inset 200px 30px 5px 5px #FFCC66;
+  box-shadow:inset 200px 30px 5px 5px #FFCC66;
+}
+
+#submit-button {
+  background: #660066;
+  color: white;
+  width: 100px;
+  height: 50px;
+  margin-top: 20px;
+  font-size: 20px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+#newgame-button {
+  margin-top: 20px;
+  background: #009999;
+  color: white;
+  height: 35px;
+  width: 150px;
+  font-size: 16px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+#games-won {
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
