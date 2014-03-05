@@ -8,6 +8,8 @@
     <br />
     <label id="response"></label>
     <br />
+    <label id="landmine"></label>
+    <br />
     <input id="user-input" type="text" />
     <br />
     <input id="submit-button" type="button" value="guess" />
@@ -15,31 +17,84 @@
     <input id="newgame-button" type="button" value="start a new game" />
     <br />
     <br />
+    <div class="landmine" id="landmine1"></div>
+    <br />
+    <div class="landmine" id="landmine2"></div>
+    <br />
+    <div class="landmine" id="landmine3"></div>
+    <br />
     <label id="games-won"></label>
   </div>
   <link href="guess-the-number.css" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript">
-    var counter = 0
-    var secretNumber = parseInt(Math.random() * 100, 10) + 1;
-    $('#submit-button').on('click', function (e) {
-    var number = $('#user-input').val();
-      if (number > secretNumber) {
-        $('#response').text("you're too high. pick lower!");
-      } else if (number < secretNumber) {
-        $('#response').text("you're too low. pick higher!");
-      } else {
-        $('#response').text("congrats! you guessed the number.");
-        counter += 1
-        $('#games-won').text('total number of games won: ' + counter);
-      }
-      });
+      var counter = 0
+      var secretNumber = parseInt(Math.random() * 100, 10) + 1;
+      var landMine1 = parseInt(Math.random() * 100, 10) + 1;
+      var landMine2 = parseInt(Math.random() * 100, 10) + 1;
+      var landMine3 = parseInt(Math.random() * 100, 10) + 1;
 
-      $('#newgame-button').on('click', function (e) {
-        $('#user-input').val('');
-        secretNumber = parseInt(Math.random() * 100, 10) + 1;
-        $('#response').text('a new game has begun!');
-    });
+      var game = function () {
+        var number = $('#user-input').val();
+        if (number > 0 && number <= 100) {
+        $('.landmine').show();
+        $('#landmine').show();
+        var distanceLandMine1 = Math.abs(number - landMine1);
+        var distanceLandMine2 = Math.abs(number - landMine2);
+        var distanceLandMine3 = Math.abs(number - landMine3);
+        var closestMine = Math.min(distanceLandMine1, distanceLandMine2, distanceLandMine3);
+        $('#landmine').text("The closest landmine to you is " + closestMine + " numbers away!");
+
+          if (number > secretNumber) {
+            $('#response').text("you're too high. pick lower!");
+          } else if (number < secretNumber) {
+            $('#response').text("you're too low. pick higher!");
+          } else {
+            $('#response').text("congrats! you guessed the number.");
+            counter += 1
+            $('#games-won').text('total number of games won: ' + counter);
+          }
+
+          $('#landmine1').text("your guess is " + distanceLandMine1 + " numbers away from Landmine 1");
+          $('#landmine2').text("your guess is " + distanceLandMine2 + " numbers away from Landmine 2");
+          $('#landmine3').text("your guess is " + distanceLandMine3 + " numbers away from Landmine 3");
+
+          $('.landmine').css('background-color', 'gray');
+          if (1 == (Math.abs(distanceLandMine1))) {
+            $('#landmine1').css('background-color', 'red');
+          } else if (1 == Math.abs(distanceLandMine2)) {
+            $('#landmine2').css('background-color', 'red');
+          } else if (1 == (distanceLandMine3)) {
+            $('#landmine3').css('background-color', 'red');
+          }
+
+          if (distanceLandMine1 >= 2 && distanceLandMine1 <= 5) {
+            $('#landmine1').css('background-color', 'yellow');
+          } else if (distanceLandMine2 >= 2 && distanceLandMine2 <= 5) {
+            $('#landmine2').css('background-color', 'yellow');
+          } else if (distanceLandMine3 >= 2 && distanceLandMine3 <= 5) {
+            $('#landmine3').css('background-color', 'yellow');
+          }
+        }
+      };
+
+
+          $('#submit-button').on('click', function (e) {
+            game();
+          })
+
+          $('#newgame-button').on('click', function (e) {
+            $('#user-input').val('');
+            secretNumber = parseInt(Math.random() * 100, 10) + 1;
+            landMine1 = parseInt(Math.random() * 100, 10) + 1;
+            landMine2 = parseInt(Math.random() * 100, 10) + 1;
+            landMine3 = parseInt(Math.random() * 100, 10) + 1;
+            $('.landmine').hide();
+            $('#landmine').hide();
+            $('#response').text('a new game has begun!');
+            game();
+        });
+
 </script>
 
 </body>
