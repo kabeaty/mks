@@ -21,6 +21,21 @@ body {
   font-weight: bold;
 }
 
+.landmine {
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  height: 25px;
+  width: 600px;
+  font-size: 16px;
+  margin-left: 50px;
+}
+
+#landmine {
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
 #response {
   font-size: 20px;
   margin-top: 20px;
